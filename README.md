@@ -1,5 +1,5 @@
 # Discription
-you can use my vimrc config file and install c-support (optional) if you are C or C++ programmer.
+You can use my vimrc config file and install c-support (optional) if you are C or C++ programmer !
 
 # Installation
 Go to vimrc directory 
