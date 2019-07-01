@@ -36,7 +36,7 @@ function help(){
 
 function main(){
     case $1 in 
-        only-vim)
+        only-vimrc)
             vimrc_installer
             ;;
 
