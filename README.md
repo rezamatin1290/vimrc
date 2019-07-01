@@ -11,10 +11,7 @@ Change mode of installer file
 ```
 chmod +x installer
 ```
-Read installer help to choose your option 
-```
-./installer help
-```
+#Uasge
 For installing c-support and vim config use *all* option 
 ```
 ./installer all
