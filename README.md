@@ -12,5 +12,9 @@ chmod +x installer
 ```
 Read installer help to choose your option 
 ```
-installer help
+./installer help
+```
+For installing c-support and vim config use *all* option 
+```
+./installer all
 ```
