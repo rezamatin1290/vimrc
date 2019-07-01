@@ -1,6 +1,6 @@
 # Discription
 You can use my vimrc config file and install c-support (optional) if you are C or C++ programmer.
-![alt text](https://raw.githubusercontent.com/mzd245/vimrc/master/Example.png
+![alt text](https://raw.githubusercontent.com/mzd245/vimrc/master/Example.png)
 
 # Installation
 Go to vimrc directory 
