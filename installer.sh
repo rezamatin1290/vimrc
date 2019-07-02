@@ -16,7 +16,7 @@ function vimrc_installer(){
     echo "$(tput setaf 2)[+] Opening tmp.file for Plugin Installer ..."
     sleep 1.5
     vim +'PlugInstall' tmp.file
-    echo "$(tput setaf 2)vimrc installed successfully!"
+    echo "$(tput setaf 2)[✔] Vimrc installed successfully!"
 }
 function cvim_installer(){ 
     wget -O cvim.zip https://www.vim.org/scripts/download_script.php?src_id=21803 
@@ -24,7 +24,7 @@ function cvim_installer(){
     cd /home/$USER_NAME/.vim
     echo "$(tput setaf 2)[+] Extracting cvim.zip ..."
     unzip $OLD_PWD/cvim.zip
-    echo "$(tput setaf 2)[+] C-support installation done !"
+    echo "$(tput setaf 2)[✔] C-support installation done !"
 }
 function help(){
     echo "Usage: ./installer [OPTION]
