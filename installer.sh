@@ -30,6 +30,7 @@ function cvim_installer(){
             echo "$(tput setaf 2)[✔] C-support installation done !"
         else 
             echo -e "$(tput setaf 1)[✗] Unzip package not found ...\nInstall unzip from your repo and try 'fix_cvim' Option." 
+            exit -1
         fi
     else 
         echo "$(tput setaf 1)[✗] C-support plugin exist !"
