@@ -11,7 +11,7 @@ fi
 function vimrc_installer(){
     echo "$(tput setaf 2)[+] Installing 'vim-plug' ..."
     sleep 1
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    curl -fLo /home/$USER_NAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     mv vimrc_file /home/$USER_NAME/.vimrc
     echo "$(tput setaf 2)[+] Opening tmp.file for Plugin Installer ..."
     sleep 1.5
