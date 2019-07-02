@@ -3,6 +3,10 @@ You can use my vimrc config file and install c-support (optional) if you are C o
 ![alt text](https://raw.githubusercontent.com/mzd245/vimrc/master/Example.png)
 
 # Installation
+Clone repository 
+```
+git clone https://github.com/mzd245/vimrc
+```
 Go to vimrc directory 
 ```
 cd vimrc
