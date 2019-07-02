@@ -73,7 +73,6 @@ function main(){
             
     esac
     if [ "$1" = "" ];then 
-                *)
              echo "installer.sh: missing operand
 Try './installer.sh help' for more information."
             exit -1
