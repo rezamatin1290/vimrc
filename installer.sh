@@ -55,7 +55,6 @@ function main(){
         only-vimrc)
             vimrc_installer
             ;;
-
         only-cvim)
             cvim_installer
             sed "s/:filetype plugin on//g" /home/$USER_NAME/.vimrc
@@ -71,11 +70,13 @@ function main(){
         help)
             help
             ;;
-        *)
+            
+    esac
+    if [ "$1" = "" ];then 
+                *)
              echo "installer.sh: missing operand
 Try './installer.sh help' for more information."
             exit -1
-            ;;
-    esac
+    fi
 }
 main
