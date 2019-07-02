@@ -1,4 +1,4 @@
-#!/bin env bash 
+#!/usr/bin/env bash 
 
 USER_NAME=$(who am i | awk {'print $1'})
 
