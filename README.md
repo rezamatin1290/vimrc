@@ -9,7 +9,7 @@ cd vimrc
 ```
 Change mode of installer file
 ```
-chmod +x installer
+chmod +x installer.sh
 ```
 # Uasge
 For installing c-support and vim config use *all* option 
