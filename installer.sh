@@ -13,8 +13,7 @@ function vimrc_installer(){
     sleep 1
     curl -fLo /home/$USER_NAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     mv vimrc_file /home/$USER_NAME/.vimrc
-    echo -e ":source /home/$USER_NAME/.vim/plugged/vim-one/colors/one.vim" >> vimrc_file
-    sed -i "117d" vimrc_file
+    sed -i 's/iman'"$USER_NAME"'/g' vimrc_file
     echo "$(tput setaf 2)[+] Opening tmp.file for Plugin Installer ..."
     sleep 1.5
     vim +'PlugInstall' tmp.file
