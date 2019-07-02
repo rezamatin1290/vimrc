@@ -42,15 +42,8 @@ function main(){
 
         only-cvim)
             cvim_installer
-            i=0
-            while read line;do
-                if [ "$line" = ":filetype plugin on" ];then
-                    i=1
-                fi
-                if [ "$i" = 0 ];then
-                    echo ":filetype plugin on" >> /home/$USER_NAME/.vimrc
-                fi
-            done
+            grep ':filetype plugin on' /home/$USER_NAME/.vimrc | sed '1d'
+            echo ":filetype plugin on" >>  /home/$USER_NAME/.vimrc
             ;;
 
         all)
