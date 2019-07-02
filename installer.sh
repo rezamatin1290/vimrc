@@ -68,8 +68,13 @@ function main(){
             vimrc_installer
             cvim_installer
             ;;
+        help)
+            help
+            ;;
         *)
-            help 
+             echo "installer.sh: missing operand
+Try './installer.sh help' for more information."
+            exit -1
             ;;
     esac
 }
