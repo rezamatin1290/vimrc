@@ -60,7 +60,7 @@ function help(){
           ;;
      only-cvim)
           cvim_installer
-          sed "s/:filetype plugin on//g" /home/$USER_NAME/.vimrc
+          sed -i "s/:filetype plugin on//g" /home/$USER_NAME/.vimrc
           echo ":filetype plugin on" >>  /home/$USER_NAME/.vimrc
           ;;
      fix_cvim)
