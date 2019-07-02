@@ -50,32 +50,29 @@ function help(){
       help        display this help and exit"
 }
 
-function main(){
-    case $1 in 
-        only-vimrc)
-            vimrc_installer
-            ;;
-        only-cvim)
-            cvim_installer
-            sed "s/:filetype plugin on//g" /home/$USER_NAME/.vimrc
-            echo ":filetype plugin on" >>  /home/$USER_NAME/.vimrc
-            ;;
-        fix_cvim)
-            fix_cvim
-            ;;
-        all)
-            vimrc_installer
-            cvim_installer
-            ;;
-        help)
-            help
-            ;;
-            
-    esac
-    if [ "$1" = "" ];then 
-             echo "installer.sh: missing operand
+
+ case "$1" in 
+     only-vimrc)
+          vimrc_installer
+          ;;
+     only-cvim)
+          cvim_installer
+          sed "s/:filetype plugin on//g" /home/$USER_NAME/.vimrc
+          echo ":filetype plugin on" >>  /home/$USER_NAME/.vimrc
+          ;;
+     fix_cvim)
+          fix_cvim
+          ;;
+      all)
+          vimrc_installer
+          cvim_installer
+          ;;
+      help)
+          help
+          ;;
+      *)
+          echo "installer.sh: missing operand
 Try './installer.sh help' for more information."
             exit -1
-    fi
-}
-main
+esac
+ 
