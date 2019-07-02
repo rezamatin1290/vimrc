@@ -46,7 +46,8 @@ function help(){
 
       all         Install vimrc plugins and setup configurations,add c-support plugin too
       only-vim    Install vimrc plugins and setup configurations only
-      only-cvim   Install c-support file and add plugin only"
+      only-cvim   Install c-support file and add plugin only
+      help        display this help and exit"
 }
 
 function main(){
