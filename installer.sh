@@ -1,9 +1,8 @@
 #!/usr/bin/env bash 
 
 # Variables 
-
 USER_NAME=$(who am i | awk {'print $1'})
-VIMRC_LOC=$(find /home/$USER_NAME -iname ".vimrc")
+VIMRC_LOC=$(find /home/$USER_NAME -type f -iname ".vimrc")
 START_PWD=$PWD
 
 # Vimrc installer function
@@ -11,8 +10,7 @@ function vimrc_installer(){
     echo "$(tput setaf 2)[+] Installing 'vim-plug' ..."
     sleep 1
     curl -fLo /home/$USER_NAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    cp vimrc_file .vimrc
-    mv .vimrc $VIMRC_LOC
+    cp vimrc_file $VIMRC_LOC
     sed -i 's/iman/'"$USER_NAME"'/g' $VIMRC_LOC
     echo "$(tput setaf 2)[+] Adding 'molokai' colorscheme ..."
     if [ ! -d /home/$USER_NAME/.vim/colors ];then
@@ -41,6 +39,7 @@ function cvim_installer(){
         fi
     else 
         echo "$(tput setaf 1)[✗] C-support plugin exist !"
+        exit -1
     fi
 }
 
@@ -67,7 +66,7 @@ function help(){
 
 # Main
 
-# Creating directory ~/.vim directory  
+# Creating directory ~/.vim directory  if is not exist
 
 if [ "$1" != "help" ];then
     if [ ! -d /home/$USER_NAME/.vim ];then
@@ -75,14 +74,17 @@ if [ "$1" != "help" ];then
     fi
 fi
 
+# Switch case for ./installer argument 
 case "$1" in 
    only-vimrc)
         vimrc_installer
         ;;
    only-cvim)
         cvim_installer 
-        echo "$(tput setaf 1)[!] Add this line in ~/.vimrc file if not exist 
-        :filetype plugin on"
+        if [ "$?" = "0" ];then
+            echo "$(tput setaf 1)[!] Add this line in ~/.vimrc file if is not exist 
+            :filetype plugin on"
+        fi
         ;;
    fix_cvim)
         fix_cvim
