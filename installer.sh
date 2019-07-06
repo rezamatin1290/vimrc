@@ -11,8 +11,14 @@ function vimrc_installer(){
     echo "$(tput setaf 2)[+] Installing 'vim-plug' ..."
     sleep 1
     curl -fLo /home/$USER_NAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    mv vimrc_file $VIMRC_LOC
-    sed -i 's/iman/'"$USER_NAME"'/g' vimrc_file
+    cp vimrc_file .vimrc
+    mv .vimrc $VIMRC_LOC
+    sed -i 's/iman/'"$USER_NAME"'/g' $VIMRC_LOC
+    echo "$(tput setaf 2)[+] Adding 'molokai' colorscheme ..."
+    if [ ! -d /home/$USER_NAME/.vim/colors ];then
+        mkdir /home/$USER_NAME/.vim/colors 
+    fi
+    mv molokai.vim /home/$USER_NAME/.vim/colors
     echo "$(tput setaf 2)[+] Opening tmp.file for Plugin Installer ..."
     sleep 1.5
     vim +'PlugInstall' tmp.file
