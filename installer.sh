@@ -46,6 +46,7 @@ function cvim_installer(){
 
 # for unzip package missing
 function fix_cvim(){
+    cd /home/$USER_NAME/.vim
     unzip $START_PWD/cvim.zip
         if [ "$?" = 0 ];then 
             echo "$(tput setaf 2)[✔] C-support installation done !"
