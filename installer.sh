@@ -80,8 +80,8 @@ case "$1" in
         ;;
    only-cvim)
         cvim_installer 
-        sed -i "s/:filetype plugin on//g" $VIMRC_LOC
-        echo ":filetype plugin on" >>  $VIMRIC_LOC
+        echo "$(tput setaf 1)[!] Add this line in ~/.vimrc file if not exist 
+        :filetype plugin on"
         ;;
    fix_cvim)
         fix_cvim
