@@ -1,41 +1,51 @@
 #!/usr/bin/env bash 
 
 # Variables 
-USER_NAME=`who am i | awk {'print $1'}`
-VIMRC_LOC=`find /home/$USER_NAME -type f -iname ".vimrc" 2> /dev/null`
 START_PWD=$PWD
+VIMRC_LOC=$(find /home -iname ".vimrc" 2> /dev/null)
+
+# Check root function 
+function checkRoot(){
+    if [ "$EUID" = "0" ];then
+        echo "$(tput setaf 1)Run script as your privilage.(without sudo)"
+        exit -1
+    fi
+}
 
 # Vimrc installer function
 function vimrc_installer(){
-    if [ ! -d /home/$USER_NAME/.vim ];then
-        mkdir /home/$USER_NAME/.vim 
+    if [ ! -d ~/.vim ];then
+        mkdir ~/.vim 
     fi
     echo "$(tput setaf 2)[+] Installing 'vim-plug' ..."
     sleep 1
-    curl -fLo /home/$USER_NAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     cp vimrc_file $VIMRC_LOC
-    sed -i 's/iman/'"$USER_NAME"'/g' $VIMRC_LOC
+    sed -i 's/iman/'"$USER"'/g' ~/.vimrc
     echo "$(tput setaf 2)[+] Adding 'molokai' colorscheme ..."
-    if [ ! -d /home/$USER_NAME/.vim/colors ];then
-        mkdir /home/$USER_NAME/.vim/colors 
+    if [ ! -d ~/.vim/colors ];then
+        mkdir ~/.vim/colors 
     fi
-    mv molokai.vim /home/$USER_NAME/.vim/colors
+    cp molokai.vim ~/.vim/colors
     echo "$(tput setaf 2)[+] Opening tmp.file for Plugin Installer ..."
     sleep 1.5
     vim +'PlugInstall' tmp.file
-    
-    echo "$(tput setaf 2)[✔] Vimrc installed successfully!"
+    if [ "$?" = 0 ];then 
+        echo "$(tput setaf 2)[✔] Vimrc installed successfully!"
+    else 
+        echo "$(tput setaf 1)[✗] Vimrc installation falied!"
+    fi
 } 
 
 # C-support plugin installer function 
 function cvim_installer(){ 
-    if [ ! -d /home/$USER_NAME/.vim ];then
-        mkdir /home/$USER_NAME/.vim 
+    if [ ! -d ~/.vim ];then
+        mkdir ~/.vim 
     fi
     
-    if [ ! -d /home/$USER_NAME/.vim/c-support ];then
+    if [ ! -d ~/.vim/c-support ];then
         wget -O cvim.zip https://www.vim.org/scripts/download_script.php?src_id=21803 
-        cd /home/$USER_NAME/.vim
+        cd ~/.vim
         echo "$(tput setaf 2)[+] Extracting cvim.zip ..."
         unzip $START_PWD/cvim.zip
         if [ "$?" = 0 ];then 
@@ -52,7 +62,7 @@ function cvim_installer(){
 
 # for unzip package missing
 function fix_cvim(){
-    cd /home/$USER_NAME/.vim
+    cd ~/.vim
     unzip $START_PWD/cvim.zip
         if [ "$?" = 0 ];then 
             echo "$(tput setaf 2)[✔] C-support installation done !"
@@ -73,6 +83,9 @@ function help(){
 
 # Main
 
+# Checking user privilage
+checkRoot
+
 # Switch case for ./installer argument 
 case "$1" in 
    only-vimrc)
@@ -81,7 +94,7 @@ case "$1" in
    only-cvim)
         cvim_installer 
         if [ "$?" = "0" ];then
-            echo "$(tput setaf 1)[!] Add this line in ~/.vimrc file if is not exist 
+            echo "$(tput setaf 1)[!] Add this line in $VIMRC_LOC file if is not exist 
             :filetype plugin on"
         fi
         ;;
