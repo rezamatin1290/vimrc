@@ -135,4 +135,8 @@ if (empty($TMUX))
 endif
 """
 
-:colorscheme default
+:colorscheme molokai
+
+"":colorscheme one
+""set background=dark " for the dark version
+""set background=light " for the light version
