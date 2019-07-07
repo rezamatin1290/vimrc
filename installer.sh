@@ -1,8 +1,8 @@
 #!/usr/bin/env bash 
 
 # Variables 
-USER_NAME=$(who am i | awk {'print $1'})
-VIMRC_LOC=$(find /home/$USER_NAME -type f -iname ".vimrc")
+USER_NAME=`who am i | awk {'print $1'}`
+VIMRC_LOC=`find /home/$USER_NAME -type f -iname ".vimrc" 2> /dev/null`
 START_PWD=$PWD
 
 # Vimrc installer function
