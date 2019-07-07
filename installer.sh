@@ -7,6 +7,9 @@ START_PWD=$PWD
 
 # Vimrc installer function
 function vimrc_installer(){
+    if [ ! -d /home/$USER_NAME/.vim ];then
+        mkdir /home/$USER_NAME/.vim 
+    fi
     echo "$(tput setaf 2)[+] Installing 'vim-plug' ..."
     sleep 1
     curl -fLo /home/$USER_NAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -26,6 +29,10 @@ function vimrc_installer(){
 
 # C-support plugin installer function 
 function cvim_installer(){ 
+    if [ ! -d /home/$USER_NAME/.vim ];then
+        mkdir /home/$USER_NAME/.vim 
+    fi
+    
     if [ ! -d /home/$USER_NAME/.vim/c-support ];then
         wget -O cvim.zip https://www.vim.org/scripts/download_script.php?src_id=21803 
         cd /home/$USER_NAME/.vim
@@ -65,14 +72,6 @@ function help(){
 }
 
 # Main
-
-# Creating directory ~/.vim directory  if is not exist
-
-if [ "$1" != "help" ];then
-    if [ ! -d /home/$USER_NAME/.vim ];then
-        mkdir /home/$USER_NAME/.vim 
-    fi
-fi
 
 # Switch case for ./installer argument 
 case "$1" in 
