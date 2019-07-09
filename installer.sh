@@ -20,7 +20,7 @@ function vimrc_installer(){
     echo "$(tput setaf 2)[+] Installing 'vim-plug' ..."
     sleep 1
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    cp vimrc_file $VIMRC_LOC
+    cp vimrc $VIMRC_LOC
     sed -i 's/iman/'"$USER"'/g' ~/.vimrc
     echo "$(tput setaf 2)[+] Adding 'molokai' colorscheme ..."
     if [ ! -d ~/.vim/colors ];then
