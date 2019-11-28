@@ -34,14 +34,6 @@
 :map <F8> :setlocal spell! spelllang=en_us<CR> " check spelling with F8
 :set pastetoggle=<F2> " Paste mode toggle with F2 Pastemode disable auto-indent and bracket auto-compelation and it helps you to paste code fro elsewhere .
 
-
-" auto complete for ( , " , ' , [ , { 
-:inoremap        (  ()<Left>
-:inoremap        "  ""<Left>
-:inoremap        `  ``<Left>
-:inoremap        '  ''<Left>
-:inoremap        [  []<Left>
-:inoremap      {  {}<Left>
 :noremap <silent> #6 :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR> " commenting line with F6
 :noremap <silent> #7 :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR> " uncommenting line with F7
 
@@ -111,6 +103,7 @@ Plug 'https://github.com/Shougo/vimshell.vim.git'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jiangmiao/auto-pairs'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
