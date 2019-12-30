@@ -7,7 +7,6 @@
 :set shiftwidth=4 " Set shiftwidth to control how many columns text is indented with the reindent operations (<< and >>) and automatic C-style indentation. 
 :set nowrap " Don't Wrap lines!
 :set nocp " This changes the values of a LOT of options, enabling features which are not Vi compatible but really really nice
-:set clipboard=unnamed
 :set clipboard=unnamedplus
 :set autoindent " Automatic indentation
 :set cindent " This turns on C style indentation
@@ -15,13 +14,12 @@
 :syntax enable " syntax highlighting
 :set showmatch " Show matching brackets
 :set hlsearch " Highlight in search
-:set ignorecase " Ignore case in search
+"":set ignorecase " Ignore case in search
 :set noswapfile " Avoid swap files
 :set mouse=a " Mouse Integration
+:set cursorline " Highlight current line
 
-
-
-" auto comment and uncooment with F6 and F7 key
+" auto comment and uncoment with F6 and F7 key
 :autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
 :autocmd FileType sh,ruby,python   let b:comment_leader = '# '
 :autocmd FileType vim   let b:comment_leader = '" '
@@ -32,16 +30,6 @@
 :noremap <silent> #3 :tabprevious<CR> " switch to previous tab with F3
 :noremap <silent> #4 :tabnext<CR> " switch to next tab with F2
 :map <F8> :setlocal spell! spelllang=en_us<CR> " check spelling with F8
-:set pastetoggle=<F2> " Paste mode toggle with F2 Pastemode disable auto-indent and bracket auto-compelation and it helps you to paste code fro elsewhere .
-
-:noremap <silent> #6 :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR> " commenting line with F6
-:noremap <silent> #7 :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR> " uncommenting line with F7
-
-:noremap <silent> #3 :tabprevious<CR> " switch to previous tab with F3
-:noremap <silent> #4 :tabnext<CR> " switch to next tab with F2
-:map <F8> :setlocal spell! spelllang=en_us<CR> " check spelling with F8
-:set pastetoggle=<F2> " Paste mode toggle with F2 Pastemode disable auto-indent and bracket auto-compelation and it helps you to paste code fro elsewhere .
-
 
 " plugins
 " autocomplpop setting
@@ -56,13 +44,17 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif
 
+ " unicode symbols
+"  let g:airline_left_sep = '»'
+"  let g:airline_left_sep = '▶'
+"  let g:airline_right_sep = '«'
+"  let g:airline_right_sep = '◀'
+
 "vim-airline-clock 
-"":let g:airline#extensions#clock#format = '%c'
+:let g:airline#extensions#clock#format = '%c'
+
 
 " NERDTree plugin setting
-
-"toggle showing NERDTree with F10
-:map <F10> :NERDTreeToggle<CR> 
 
 "open a NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
@@ -73,24 +65,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Open file in new tab with ctrl + t
 :let NERDTreeMapOpenInTab='<c-t>'
-:map <t> :split <CR>
+
 "indentLine 
 :let g:indentLine_char = '.'
-
-"vimshell
-"You can use 'nicely' or 'split' or 'vsplit' or 'tabnew' for this line
-:let g:vimshell_split_command = 'split'
-
-"Run python and bash scripts
-:map <F5> :call CompileRun()<CR>
-func! CompileRun()
-    exec "w"
-    if &filetype == 'python'
-        execute "VimShellExecute" "python" expand("%")
-    elseif &filetype == 'sh'
-        execute "VimShellExecute" "bash" expand("%")
-    endif
-endfunc
 
 
 " vim-plug
@@ -100,15 +77,22 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/rakr/vim-one.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Shougo/vimshell.vim.git'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'srcery-colors/srcery-vim'
+Plug 'joshdick/onedark.vim'
+"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'https://github.com/skywind3000/asyncrun.vim.git'
 Plug 'jiangmiao/auto-pairs'
-
+Plug 'justmao945/vim-clang'
+Plug 'ayu-theme/ayu-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'puremourning/vimspector'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
-:source /home/iman/.vim/plugged/vim-one/colors/one.vim
-" 24 bit true colors
+
+
+" 24bit true colors
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -122,14 +106,37 @@ if (empty($TMUX))
   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
 
-"" if (has("termguicolors"))
-""   set termguicolors
-"" endif
+ if (has("termguicolors"))
+   set termguicolors
+ endif
 endif
-"""
 
-:colorscheme molokai
+" scary colorscheme
+":let g:srcery_italic = 1
+":let g:srcery_bold = 1
+":let g:srcery_transparent_background = 0
+":let g:srcery_underline = 1
+":let g:srcery_undercurl = 1
+":let g:srcery_inverse = 1
+":let g:srcery_inverse_matches = 1
+":let g:srcery_inverse_match_paren = 1
+":let g:srcery_dim_lisp_paren = 1
+":color srcery
+":colorscheme srcery
 
-"":colorscheme one
-""set background=dark " for the dark version
-""set background=light " for the light version
+" set default colorscheme  
+colorscheme ayu
+
+" show qss file highlighting like css files 
+au BufRead,BufNewFile *.qss set filetype=css
+
+"call pylint
+:autocmd FileType python :map <F10> :AsyncRun pylint ./%<CR><CR>
+:map <F12> :bw!<CR> 
+
+
+:autocmd FileType python :noremap <F5> :AsyncRun -raw python % <CR> 
+:autocmd FileType sh  :noremap <F5> :AsyncRun bash % <CR> 
+:autocmd FileType json syntax match Comment +\/\/.\+$+
+:autocmd FileType c,cpp,py :NERDTree " auto run NERDTree for [.c, .cpp, .py] files 
+:let g:vimspector_enable_mappings = 'HUMAN'
