@@ -29,6 +29,7 @@
 
 :noremap <silent> #3 :tabprevious<CR> " switch to previous tab with F3
 :noremap <silent> #4 :tabnext<CR> " switch to next tab with F2
+:map <F8> :setlocal spell! spelllang=en_us<CR> " check spelling with F8
 
 " plugins
 " autocomplpop setting
@@ -63,7 +64,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Open file in new tab with ctrl + t
-:let NERDTreeMapOpenInTab='<c-t>'
+:let NERDTreeMapOpenInTab= '<c-t>'
 
 "indentLine 
 :let g:indentLine_char = '.'
@@ -78,6 +79,7 @@ Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Shougo/vimshell.vim.git'
 Plug 'srcery-colors/srcery-vim'
 Plug 'joshdick/onedark.vim'
+"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
@@ -86,6 +88,7 @@ Plug 'justmao945/vim-clang'
 Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'puremourning/vimspector'
+Plug 'vim-scripts/a.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -109,7 +112,7 @@ if (empty($TMUX))
  endif
 endif
 
-" scary colorscheme setting
+" scary colorscheme
 :let g:srcery_italic = 1
 :let g:srcery_bold = 1
 :let g:srcery_transparent_background = 0
@@ -122,7 +125,8 @@ endif
 :color srcery
 
 " set default colorscheme  
-colorscheme ayu
+:let g:colorscheme = "ayu"
+
 
 " show qss file highlighting like css files 
 au BufRead,BufNewFile *.qss set filetype=css
@@ -135,5 +139,5 @@ au BufRead,BufNewFile *.qss set filetype=css
 :autocmd FileType python :noremap <F5> :AsyncRun -raw python % <CR> 
 :autocmd FileType sh  :noremap <F5> :AsyncRun bash % <CR> 
 :autocmd FileType json syntax match Comment +\/\/.\+$+
-:autocmd FileType c,cpp,py :NERDTree " auto run NERDTree for [.c, .cpp, .py] files 
-:let g:vimspector_enable_mappings = 'HUMAN'
+:let g:vimspector_enable_mappings = 'HUMAN' " vimspector mappings 
+:execute 'colorscheme ' . g:colorscheme  
