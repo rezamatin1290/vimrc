@@ -29,7 +29,6 @@
 
 :noremap <silent> #3 :tabprevious<CR> " switch to previous tab with F3
 :noremap <silent> #4 :tabnext<CR> " switch to next tab with F2
-:map <F8> :setlocal spell! spelllang=en_us<CR> " check spelling with F8
 
 " plugins
 " autocomplpop setting
@@ -79,7 +78,6 @@ Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Shougo/vimshell.vim.git'
 Plug 'srcery-colors/srcery-vim'
 Plug 'joshdick/onedark.vim'
-"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
@@ -111,18 +109,17 @@ if (empty($TMUX))
  endif
 endif
 
-" scary colorscheme
-":let g:srcery_italic = 1
-":let g:srcery_bold = 1
-":let g:srcery_transparent_background = 0
-":let g:srcery_underline = 1
-":let g:srcery_undercurl = 1
-":let g:srcery_inverse = 1
-":let g:srcery_inverse_matches = 1
-":let g:srcery_inverse_match_paren = 1
-":let g:srcery_dim_lisp_paren = 1
-":color srcery
-":colorscheme srcery
+" scary colorscheme setting
+:let g:srcery_italic = 1
+:let g:srcery_bold = 1
+:let g:srcery_transparent_background = 0
+:let g:srcery_underline = 1
+:let g:srcery_undercurl = 1
+:let g:srcery_inverse = 1
+:let g:srcery_inverse_matches = 1
+:let g:srcery_inverse_match_paren = 1
+:let g:srcery_dim_lisp_paren = 1
+:color srcery
 
 " set default colorscheme  
 colorscheme ayu
