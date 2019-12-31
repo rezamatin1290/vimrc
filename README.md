@@ -39,10 +39,10 @@ Add this config **IF YOU ARE USING ccls** :
   }
 }
 ```
-For more information, read these links : [Installation](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim), [Language servers](https://github.com/neoclide/coc.nvim/wiki/Language-servers), [Configuration files](https://github.com/neoclide/coc.nvim/wiki/Using-the-configuration-file),  
+For more information, read these links : [Installation](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim), [Language servers](https://github.com/neoclide/coc.nvim/wiki/Language-servers), [Configuration files](https://github.com/neoclide/coc.nvim/wiki/Using-the-configuration-file).
 
 # Plugins
-- [coc](https://github.com/neoclide/coc.nvim) : Auto Complete
+- [coc](https://github.com/neoclide/coc.nvim) : Intellisense engine (full language server protocol support)
 - [vimspector](https://github.com/puremourning/vimspector) : Debugger 
 - [NERDTree](https://github.com/scrooloose/nerdtree) : File system explorer
 - [VimShell](https://github.com/Shougo/vimshell.vim) : Accessing shell in vim
