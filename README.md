@@ -48,7 +48,6 @@ For more information, read these links : [Installation](https://github.com/neocl
 - [VimShell](https://github.com/Shougo/vimshell.vim) : Accessing shell in vim
 - [airline](https://github.com/vim-airline/vim-airline) : Status line 
 - [vim-one](https://github.com/rakr/vim-one.git), [onedark](https://github.com/joshdick/onedark.vim), [srcery-vim](https://github.com/srcery-colors/srcery-vim) : Color scheme
-- [vimspector](https://github.com/puremourning/vimspector) : Debugger
 - [asyncrun](https://github.com/skywind3000/asyncrun.vim.git) : Async
 - [auto-pair](https://github.com/jiangmiao/auto-pairs) : Insert or delete brackets, parens, quotes in pair
 
